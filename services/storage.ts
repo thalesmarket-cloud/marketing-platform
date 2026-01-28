@@ -1,5 +1,5 @@
 
-import { VoteRecord } from '../types';
+import { VoteRecord } from '../types.js';
 
 const STORAGE_KEY = 'thales_30_votes';
 

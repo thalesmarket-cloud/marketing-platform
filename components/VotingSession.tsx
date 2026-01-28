@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { LOGO_PROPOSALS, LogoProposal } from '../types';
+import { LOGO_PROPOSALS, LogoProposal } from '../types.js';
 
 interface VotingSessionProps {
   voterName: string;

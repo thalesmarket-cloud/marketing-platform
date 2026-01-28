@@ -1,13 +1,20 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { AppStep, VoteRecord } from './types';
-import { saveVote, getVotes } from './services/storage';
-import Layout from './components/Layout';
-import Home from './components/Home';
-import Identification from './components/Identification';
-import VotingSession from './components/VotingSession';
-import Confirmation from './components/Confirmation';
-import AdminDashboard from './components/AdminDashboard';
+import React, { useState, useCallback } from 'react';
+import { AppStep, VoteRecord } from './types.js';
+import { saveVote, getVotes } from './services/storage.js';
+import Layout from './components/Layout.js';
+import Home from './components/Home.js';
+import Identification from './components/Identification.js';
+import VotingSession from './components/VotingSession.js';
+import Confirmation from './components/Confirmation.js';
+import AdminDashboard from './components/AdminDashboard.js';
+
+const generateId = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+};
 
 const App: React.FC = () => {
   const [step, setStep] = useState<AppStep>('home');
@@ -15,7 +22,6 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | undefined>();
   const [isAdmin, setIsAdmin] = useState(false);
 
-  // Simple admin auth check
   const handleAdminAccess = useCallback(() => {
     const pass = window.prompt("Veuillez saisir le mot de passe administrateur :");
     if (pass === "Thales30") {
@@ -29,7 +35,6 @@ const App: React.FC = () => {
   const handleStartVote = () => setStep('identification');
   
   const handleIdentitySubmitted = (identity: string) => {
-    // Basic check for duplicates
     const votes = getVotes();
     const alreadyVoted = votes.some(v => v.voterIdentity.toLowerCase() === identity.toLowerCase());
     
@@ -44,7 +49,7 @@ const App: React.FC = () => {
 
   const handleVoteSubmit = (logoId: number) => {
     const newVote: VoteRecord = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       voterIdentity,
       logoId,
       timestamp: Date.now()
