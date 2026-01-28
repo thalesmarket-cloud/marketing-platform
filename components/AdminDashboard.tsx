@@ -1,8 +1,8 @@
 
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts';
-import { getVotes, clearVotes } from '../services/storage.js';
-import { LOGO_PROPOSALS } from '../types.js';
+import { getVotes, clearVotes } from '../services/storage';
+import { LOGO_PROPOSALS } from '../types';
 
 interface AdminDashboardProps {
   onBack: () => void;

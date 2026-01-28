@@ -1,13 +1,13 @@
 
 import React, { useState, useCallback } from 'react';
-import { AppStep, VoteRecord } from './types.js';
-import { saveVote, getVotes } from './services/storage.js';
-import Layout from './components/Layout.js';
-import Home from './components/Home.js';
-import Identification from './components/Identification.js';
-import VotingSession from './components/VotingSession.js';
-import Confirmation from './components/Confirmation.js';
-import AdminDashboard from './components/AdminDashboard.js';
+import { AppStep, VoteRecord } from './types';
+import { saveVote, getVotes } from './services/storage';
+import Layout from './components/Layout';
+import Home from './components/Home';
+import Identification from './components/Identification';
+import VotingSession from './components/VotingSession';
+import Confirmation from './components/Confirmation';
+import AdminDashboard from './components/AdminDashboard';
 
 const generateId = () => {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
